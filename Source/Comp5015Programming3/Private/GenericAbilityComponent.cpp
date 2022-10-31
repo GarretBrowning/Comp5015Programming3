@@ -40,7 +40,7 @@ void UGenericAbilityComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	// .....
 }
 
 /* -- - Shared amongst all Abilities-- - */
