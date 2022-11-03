@@ -35,7 +35,7 @@ void UItemInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType
 
 void UItemInventoryComponent::InitializeArray(int aMaxSize)
 {
-	MyItems.AddDefaulted()
+	//MyItems.AddDefaulted()
 
 	/*for(int i = 0; i < MyItems.Num(); i++)
 	{
