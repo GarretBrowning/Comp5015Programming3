@@ -6,5 +6,6 @@
 bool UDamageAbility::ActivateAbility()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Damage Ability Activated! (Overidden)"))
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Damage Ability Activated! (Overidden)"));
 	return true;
 }
