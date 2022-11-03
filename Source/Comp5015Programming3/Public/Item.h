@@ -14,6 +14,7 @@ class COMP5015PROGRAMMING3_API UItem : public UObject
 {
 	GENERATED_BODY()
 
+public:
 	// --- Item Base Properties ---
 	// Name of the item:
 	UPROPERTY(EditDefaultsOnly, Category = "Item | Base Traits")
