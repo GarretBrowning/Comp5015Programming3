@@ -13,6 +13,8 @@ APlaygroundPawn::APlaygroundPawn()
 
 	// Adding in a health component to the player pawn.
 	Health = CreateDefaultSubobject<UHealthComponent>(TEXT("Health"));
+
+	// Adding in an item 
 }
 
 // Called when the game starts or when spawned
