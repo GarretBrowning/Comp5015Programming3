@@ -27,11 +27,17 @@ void UItemInventoryComponent::BeginPlay()
 	MyWizardStaff->Initialize("Wizard Staff", 3, 1);
 	bIsEqual = MyWizardStaff->CompareItem(MyWizardStaff, MyWizardStaff2);
 	UE_LOG(LogTemp, Warning, TEXT("%i"), bIsEqual);
-	
+
+
+
 	//UE_LOG(LogTemp, Warning, TEXT("%s"), *MyWizardStaff->ToString());
 
 	// Initializing array and adding in the dummy item:
-	//InitializeArray(MyMaxSize);
+	InitializeArray(MyMaxSize);
+	MyItems[0] = MyWizardStaff;
+	MyItems[1] = MyWizardStaff2;
+	UE_LOG(LogTemp, Warning, TEXT("Number of items in inventory: %i"), CountItems());
+	UE_LOG(LogTemp, Warning, TEXT("Number of inventory slots: %i"), MyItems.Num());
 	
 	// ...
 	
@@ -53,16 +59,22 @@ void UItemInventoryComponent::InitializeArray(int aMaxSize)
 	// Proof of Items:
 	for(int i = 0; i < MyItems.Num(); i++)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Index of Inventory: %i"), i);
 		MyItems[i] = NULL;
 	}
 }
 
-// TODO:
 // Returns the number of items (non-NULL) within the inventory array:
 int UItemInventoryComponent::CountItems() const
 {
-	return 0;
+	int ItemCounter{ 0 };
+	for (const auto Item : MyItems)
+	{
+		if (Item)
+		{
+			ItemCounter++;
+		}
+	}
+	return ItemCounter;
 }
 
 bool UItemInventoryComponent::AddItemAtIndex(int index, UItem* NewItem)
