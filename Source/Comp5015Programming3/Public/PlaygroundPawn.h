@@ -38,5 +38,4 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	UItemInventoryComponent* ItemInventory;
-
 };

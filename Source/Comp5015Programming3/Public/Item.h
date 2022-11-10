@@ -43,6 +43,7 @@ public:
 	 * Should also return false if any parameter passed in is NULL. */
 	static bool CompareItem(UItem* anItem, UItem* anItemToCompare);
 
+private:
 	// Output the Item details:
 	FString ToString();
 };

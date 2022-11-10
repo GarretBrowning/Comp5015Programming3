@@ -20,6 +20,8 @@ void UItemInventoryComponent::BeginPlay()
 	Super::BeginPlay();
 
 	InitializeArray(MyMaxSize);
+
+
 	// ...
 	
 }
@@ -33,14 +35,18 @@ void UItemInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType
 	// ...
 }
 
+
+// Initializing the array and adding in a dummy item:
 void UItemInventoryComponent::InitializeArray(int aMaxSize)
 {
-	//MyItems.AddDefaulted()
+	// Sets the given size of the item array:
+	MyItems.SetNum(aMaxSize);
 
-	/*for(int i = 0; i < MyItems.Num(); i++)
+	// Proof of Items:
+	for(int i = 0; i < MyItems.Num(); i++)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s"), MyItems[i]->GetName().ToString());
-	}*/
+		UE_LOG(LogTemp, Warning, TEXT("Index of Inventory: %i"), i);
+	}
 }
 
 // Returns the number of items (non-NULL) within the inventory array:
