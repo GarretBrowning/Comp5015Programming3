@@ -14,11 +14,16 @@ class COMP5015PROGRAMMING3_API UItem : public UObject
 {
 	GENERATED_BODY()
 
+
+//public:
+	//// Sets default values for this object's properties
+	//UItem();
+
 public:
 	// --- Item Base Properties ---
 	// Name of the item:
 	UPROPERTY(EditDefaultsOnly, Category = "Item | Base Traits")
-	FName MyName = "Default Item Name";
+	FName MyName;
 
 	// Attack damage value of the item:
 	UPROPERTY(EditDefaultsOnly, Category = "Item | Base Traits")
@@ -43,7 +48,7 @@ public:
 	 * Should also return false if any parameter passed in is NULL. */
 	static bool CompareItem(UItem* anItem, UItem* anItemToCompare);
 
-private:
+//private:
 	// Output the Item details:
 	FString ToString();
 };

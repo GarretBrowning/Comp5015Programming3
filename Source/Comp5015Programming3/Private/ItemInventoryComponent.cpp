@@ -19,13 +19,25 @@ void UItemInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	InitializeArray(MyMaxSize);
+	// Creating a dummy item to be placed within the inventory:
+	UItem* aWizardStaff = NewObject<UItem>();
+
+	aWizardStaff->Initialize("Wizard Staff", 3, 1);
 
 
+	//const FString DebugMsg = *aWizardStaff->ToString();
+
+
+
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *aWizardStaff->ToString());
+	//aWizardStaff.to
+
+	// Initializing array and adding in the dummy item:
+	//InitializeArray(MyMaxSize);
+	
 	// ...
 	
 }
-
 
 // Called every frame
 void UItemInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -35,23 +47,27 @@ void UItemInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType
 	// ...
 }
 
-
-// Initializing the array and adding in a dummy item:
+// Initializing the array of items:
 void UItemInventoryComponent::InitializeArray(int aMaxSize)
 {
 	// Sets the given size of the item array:
 	MyItems.SetNum(aMaxSize);
-
 	// Proof of Items:
 	for(int i = 0; i < MyItems.Num(); i++)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Index of Inventory: %i"), i);
+		MyItems[i] = NULL;
 	}
 }
 
+// TODO:
 // Returns the number of items (non-NULL) within the inventory array:
 int UItemInventoryComponent::CountItems() const
 {
 	return 0;
 }
 
+bool UItemInventoryComponent::AddItemAtIndex(int index, UItem* NewItem)
+{
+	return true;
+}
