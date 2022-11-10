@@ -20,17 +20,15 @@ void UItemInventoryComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// Creating a dummy item to be placed within the inventory:
-	UItem* aWizardStaff = NewObject<UItem>();
-
-	aWizardStaff->Initialize("Wizard Staff", 3, 1);
-
-
-	//const FString DebugMsg = *aWizardStaff->ToString();
-
-
-
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *aWizardStaff->ToString());
-	//aWizardStaff.to
+	UItem* MyWizardStaff = NewObject<UItem>();
+	UItem* MyWizardStaff2 = NewObject<UItem>();
+	bool bIsEqual = MyWizardStaff->CompareItem(MyWizardStaff, MyWizardStaff2);
+	UE_LOG(LogTemp, Warning, TEXT("%i"), bIsEqual);
+	MyWizardStaff->Initialize("Wizard Staff", 3, 1);
+	bIsEqual = MyWizardStaff->CompareItem(MyWizardStaff, MyWizardStaff2);
+	UE_LOG(LogTemp, Warning, TEXT("%i"), bIsEqual);
+	
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), *MyWizardStaff->ToString());
 
 	// Initializing array and adding in the dummy item:
 	//InitializeArray(MyMaxSize);

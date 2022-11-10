@@ -14,10 +14,8 @@ class COMP5015PROGRAMMING3_API UItem : public UObject
 {
 	GENERATED_BODY()
 
-
-//public:
-	//// Sets default values for this object's properties
-	//UItem();
+	// Constructor:
+	UItem();
 
 public:
 	// --- Item Base Properties ---
@@ -34,8 +32,9 @@ public:
 	int MyDefenceValue{ 0 };
 
 	// --- Item Base Functions ---
-	// Sets the initial values of the item:
-	void Initialize(FName aName, int anAttackValue, int aDefenceValue);
+	// Sets the initial values of the item.
+	// Additionally has default values set.
+	void Initialize(FName aName = "???", int anAttackValue = 0, int aDefenceValue = 0);
 
 	// Accessors:
 	int GetAttackValue();
@@ -44,11 +43,11 @@ public:
 
 	class UPaperSprite* GetIconImage(); // Not entirely sure what this is going to be used for yet.
 
-	/* Returns true if they have the same Name, Attack & Defence Values; otherwise, returns false.
+	/* Returns true if they have the same Name, Attack & Defence values; otherwise, returns false.
 	 * Should also return false if any parameter passed in is NULL. */
 	static bool CompareItem(UItem* anItem, UItem* anItemToCompare);
 
 //private:
-	// Output the Item details:
+	// Output the item details:
 	FString ToString();
 };

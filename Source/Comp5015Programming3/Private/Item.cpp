@@ -1,12 +1,14 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Item.h"
 #include "Paper2D/Classes/PaperSprite.h"
 
-//UItem::UItem()
-//{
-//}
+
+// Default Constructor with no base traits given:
+UItem::UItem()
+{
+	Initialize();
+}
 
 // Initializes the base properties of the item using the given parameter values:
 void UItem::Initialize(FName aName, int anAttackValue, int aDefenceValue)
@@ -28,16 +30,28 @@ int UItem::GetDefenceValue()
 
 FName UItem::GetName()
 {
-	// Debugging:
-	//UE_LOG(LogTemp, Warning, TEXT("Name: %s."), MyName);
-	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, MyName.ToString());
-
 	return MyName;
 }
 
 UPaperSprite* UItem::GetIconImage()
 {
 	return nullptr;
+}
+
+bool UItem::CompareItem(UItem* anItem, UItem* anItemToCompare)
+{
+	if (
+		anItem && anItemToCompare &&
+		anItem->GetName() == anItemToCompare->GetName() &&
+		anItem->GetAttackValue() == anItemToCompare->GetAttackValue() &&
+		anItem->GetDefenceValue() == anItemToCompare->GetDefenceValue()
+		)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Items are the same."));
+		return true;
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Items are the not equal."));
+	return false;
 }
 
 // Returns an FString containing a brief description of the item's basic stats/traits:
