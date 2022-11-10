@@ -8,13 +8,14 @@ APlaygroundPawn::APlaygroundPawn()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	// Adding in a generic ability component to the player pawn.
+	// Adding in a generic ability component.
 	GenericAbility = CreateDefaultSubobject<UGenericAbilityComponent>(TEXT("Abilities"));
 
-	// Adding in a health component to the player pawn.
+	// Adding in a health component.
 	Health = CreateDefaultSubobject<UHealthComponent>(TEXT("Health"));
 
-	// Adding in an item 
+	// Adding in an item inventory component.
+	ItemInventory = CreateDefaultSubobject<UItemInventoryComponent>(TEXT("Inventory"));
 }
 
 // Called when the game starts or when spawned
