@@ -38,19 +38,19 @@ public:
 	// Returns the number of items currently in the array (does not count NULL entries):
 	int CountItems() const;
 
-	// TODO: --- Need to Implement Everything Below Here: ---
 	// Does anything exist at a given index:
 	bool ContainsItemAtIndex(int anIndex) const;
 
 	// Adds an item into the inventory array at the last open space, returns true if
 	// it can be added, return false if it can't (no space because of MaxSize).
-	bool AddItem(UItem* NewItem);
+	bool AddItem(UItem* aNewItem);
 
 	// Tries to add at a given index, returns false if it cant. Don't replace.
-	bool AddItemAtIndex(int index, UItem* NewItem);
+	bool AddItemAtIndex(int anIndex, UItem* aNewItem);
 
+	// TODO: --- Need to Implement Everything Below Here: ---
 	// Retrieve non destructively:
-	UItem* GetItemAtIndex(int index) const;
+	UItem* GetItemAtIndex(int anIndex) const;
 
 	// Replace the item at the given index with a NewItem, returning a reference to the old one.
 	UItem* ReplaceItem(int index, UItem* NewItem);
