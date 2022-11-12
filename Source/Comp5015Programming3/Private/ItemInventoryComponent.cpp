@@ -56,13 +56,28 @@ void UItemInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType
 // Initializes the array of items.
 void UItemInventoryComponent::InitializeArray(int aMaxSize)
 {
+	// Error-Checking for negative numbers of aMaxSize:
+	if (aMaxSize < 0)
+	{
+		return;
+	}
+
+	// Sets the variable of MyMaxSize to the newly given aMaxSize as this will be ultimately changing the size of this array.
+	MyMaxSize = aMaxSize;
+
 	// Sets the given size of the item array:
 	MyItems.SetNum(aMaxSize);
-	// Proof of Items:
+	
+	// Ensuring each entry is set to NULL:
 	for(int i = 0; i < MyItems.Num(); i++)
 	{
 		MyItems[i] = NULL;
 	}
+}
+
+int UItemInventoryComponent::GetMaxSize() const
+{
+	return MyMaxSize;
 }
 
 // Returns the number of items (non-NULL) within the inventory array.

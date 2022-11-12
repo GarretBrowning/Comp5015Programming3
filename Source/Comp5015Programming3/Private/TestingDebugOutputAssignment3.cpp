@@ -3,6 +3,7 @@
 
 #include "TestingDebugOutputAssignment3.h"
 #include "Item.h"
+#include "ItemInventoryComponent.h"
 
 
 UTestingDebugOutputAssignment3::UTestingDebugOutputAssignment3()
@@ -18,6 +19,12 @@ void UTestingDebugOutputAssignment3::OutputDebugTestLogs()
 	TestGetDefenceValue();
 	TestGetName();
 	TestCompareItem();
+
+	// -- ITEM INVENTORY COMPONENT --
+	TestInitializeArray();
+	TestCountItems();
+	TestAddItem();
+	ContainsItemAtIndex();
 	return;
 }
 
@@ -38,7 +45,7 @@ void UTestingDebugOutputAssignment3::TestItemInitialize()
 	MyTestWizardStaff->Initialize("Wizard Staff", 6, 1);
 
 	UE_LOG(LogTemp, Warning, TEXT("-- Testing Item Initialize() --"));
-	UE_LOG(LogTemp, Display, TEXT("Initizializing Test Wizard Staff: --- %s"), *MyTestWizardStaff->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Initializing Test Wizard Staff: --- %s"), *MyTestWizardStaff->ToString());
 }
 
 void UTestingDebugOutputAssignment3::TestGetAttackValue()
@@ -58,7 +65,7 @@ void UTestingDebugOutputAssignment3::TestGetDefenceValue()
 	MyTestShield->Initialize("Shield", 1, 4);
 
 	UE_LOG(LogTemp, Warning, TEXT("-- Testing Item GetDefenceValue() --"));
-	UE_LOG(LogTemp, Display, TEXT("Initizializing Test Shield: --- %s"), *MyTestShield->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Initializing Test Shield: --- %s"), *MyTestShield->ToString());
 	UE_LOG(LogTemp, Display, TEXT("Getting Shield Defence Value: --- %i"), MyTestShield->GetAttackValue());
 }
 
@@ -69,7 +76,7 @@ void UTestingDebugOutputAssignment3::TestGetName()
 	MyTestShortSword->Initialize("Short Sword", 5, 2);
 
 	UE_LOG(LogTemp, Warning, TEXT("-- Testing Item GetName() --"));
-	UE_LOG(LogTemp, Display, TEXT("Initizializing Short Sword: --- %s"), *MyTestShortSword->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Initializing Short Sword: --- %s"), *MyTestShortSword->ToString());
 	UE_LOG(LogTemp, Display, TEXT("Getting Short Sword Name: --- %s"), *MyTestShortSword->GetName().ToString());
 }
 
@@ -92,9 +99,94 @@ void UTestingDebugOutputAssignment3::TestCompareItem()
 	MyTestShortSword2->Initialize("Short Sword", 5, 2);
 
 	UE_LOG(LogTemp, Warning, TEXT("-- Testing Item CompareItem(UItem* anItem, UItem* anItemToCompare) --"));
-	UE_LOG(LogTemp, Display, TEXT("Initizializing Shield: --- %s"), *MyTestShield->ToString());
-	UE_LOG(LogTemp, Display, TEXT("Initizializing Short Sword: --- %s"), *MyTestShortSword->ToString());
-	UE_LOG(LogTemp, Display, TEXT("Initizializing Short Sword (duplicate): --- %s"), *MyTestShortSword2->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Initializing Shield: --- %s"), *MyTestShield->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Initializing Short Sword: --- %s"), *MyTestShortSword->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Initializing Short Sword (duplicate): --- %s"), *MyTestShortSword2->ToString());
 	UE_LOG(LogTemp, Display, TEXT("^Comparing Shield against Short Sword: --- Equal? %s"), MyTestShield->CompareItem(MyTestShield, MyTestShortSword) ? TEXT("True") : TEXT("False"));
 	UE_LOG(LogTemp, Display, TEXT("^Comparing Short Sword against Short Sword (duplicate): --- Equal? %s"), MyTestShield->CompareItem(MyTestShortSword, MyTestShortSword2) ? TEXT("True") : TEXT("False"));
+}
+
+void UTestingDebugOutputAssignment3::TestInitializeArray()
+{
+	UItemInventoryComponent* MyTestInventory = NewObject<UItemInventoryComponent>();
+	MyTestInventory->InitializeArray(MySmallSize);
+
+	UE_LOG(LogTemp, Warning, TEXT("-- Testing ItemInventoryComponent InitializeArray(int aMaxSize) --"));
+	UE_LOG(LogTemp, Display, TEXT("Inventory has been created with a size of: %i"), MyTestInventory->GetMaxSize());
+}
+
+void UTestingDebugOutputAssignment3::TestCountItems()
+{
+	UItem* MyTestShield = NewObject<UItem>();
+	MyTestShield->Initialize("Shield", 1, 4);
+
+	UItemInventoryComponent* MyTestInventory = NewObject<UItemInventoryComponent>();
+	MyTestInventory->InitializeArray(MySmallSize);
+
+	MyTestInventory->AddItem(MyTestShield);
+
+	UE_LOG(LogTemp, Warning, TEXT("-- Testing ItemInventoryComponent CountItems() --"));
+	UE_LOG(LogTemp, Display, TEXT("Initializing Shield: --- %s"), *MyTestShield->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Inventory has been created with a size of: %i"), MyTestInventory->GetMaxSize());
+	UE_LOG(LogTemp, Display, TEXT("Adding Shield to Inventory. Items in Inventory: %i"), MyTestInventory->CountItems());
+}
+
+void UTestingDebugOutputAssignment3::ContainsItemAtIndex()
+{
+	UItem* MyTestShield = NewObject<UItem>();
+	MyTestShield->Initialize("Shield", 1, 4);
+
+	UItemInventoryComponent* MyTestInventory = NewObject<UItemInventoryComponent>();
+	MyTestInventory->InitializeArray(MySmallSize);
+	MyTestInventory->AddItemAtIndex(0, MyTestShield);
+
+	UE_LOG(LogTemp, Warning, TEXT("-- Testing ItemInventoryComponent ContainsItemAtIndex(int anIndex) --"));
+	UE_LOG(LogTemp, Display, TEXT("Initializing Shield: --- %s"), *MyTestShield->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Inventory has been created with a size of: %i"), MyTestInventory->GetMaxSize());
+	UE_LOG(LogTemp, Display, TEXT("Adding Shield to the First Inventory Slot [0]."));
+	UE_LOG(LogTemp, Display, TEXT("Checking if 'Shield' is in Slot [0]: --- Found? %s"), MyTestInventory->ContainsItemAtIndex(0) ? TEXT("True") : TEXT("False"));
+}
+
+void UTestingDebugOutputAssignment3::TestAddItem()
+{
+	UItem* MyTestShield = NewObject<UItem>();
+	MyTestShield->Initialize("Shield", 1, 4);
+
+	UItemInventoryComponent* MyTestInventory = NewObject<UItemInventoryComponent>();
+	MyTestInventory->InitializeArray(MySmallSize);
+
+	MyTestInventory->AddItem(MyTestShield);
+
+	UE_LOG(LogTemp, Warning, TEXT("-- Testing ItemInventoryComponent AddItem(UItem* aNewItem) --"));
+	UE_LOG(LogTemp, Display, TEXT("Initializing Shield: --- %s"), *MyTestShield->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Inventory has been created with a size of: %i"), MyTestInventory->GetMaxSize());
+	if (MyTestInventory->ContainsItemAtIndex(MySmallSize - 1))
+	{
+		UE_LOG(LogTemp, Display, TEXT("Item Successfully Added to Inventory."));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Adding Item to Inventory Failed."));
+	}
+}
+
+void UTestingDebugOutputAssignment3::TestAddItemAtIndex()
+{
+	UItem* MyTestShortSword = NewObject<UItem>();
+	MyTestShortSword->Initialize("Short Sword", 5, 2);
+
+	UItemInventoryComponent* MyTestInventory = NewObject<UItemInventoryComponent>();
+	MyTestInventory->InitializeArray(MySmallSize);
+	MyTestInventory->AddItemAtIndex(0, MyTestShortSword);
+
+	UE_LOG(LogTemp, Warning, TEXT("-- Testing ItemInventoryComponent TestAddItemAtIndex(int anIndex, UItem* anItem) --"));
+	UE_LOG(LogTemp, Display, TEXT("Initializing Short Sword: --- %s"), *MyTestShortSword->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Inventory has been created with a size of: %i"), MyTestInventory->GetMaxSize());
+	UE_LOG(LogTemp, Display, TEXT("Adding Short Sword to the Third Inventory Slot [2] using AddItemAtIndex method."));
+	UE_LOG(LogTemp, Display, TEXT("Checking if 'Short Sword' is in Slot [2]: --- Found? %s"), MyTestInventory->ContainsItemAtIndex(2) ? TEXT("True") : TEXT("False"));
+}
+
+void UTestingDebugOutputAssignment3::TestGetItemAtIndex()
+{
+	// This one next! You got this! :party:
 }

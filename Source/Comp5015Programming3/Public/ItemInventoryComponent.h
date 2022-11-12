@@ -35,6 +35,9 @@ public:
 	void InitializeArray(int aMaxSize);
 
 	// --- Array Operations ---
+	// Returns the maximum size of the item inventory (includes NULL entries):
+	int GetMaxSize() const;
+
 	// Returns the number of items currently in the array (does not count NULL entries):
 	int CountItems() const;
 
