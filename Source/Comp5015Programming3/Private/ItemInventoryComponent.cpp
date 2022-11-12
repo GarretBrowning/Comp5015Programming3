@@ -1,9 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ItemInventoryComponent.h"
-#include "TestingDebugOutputAssignment3.h"
-
-#include "Ability.h"
+#include "TestingDebugOutputAssignment3.h" // For Debug Testing.
 
 // Sets default values for this component's properties
 UItemInventoryComponent::UItemInventoryComponent()
@@ -21,28 +19,10 @@ void UItemInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//-Debug-Testing-//
 	UTestingDebugOutputAssignment3* Debugger = NewObject<UTestingDebugOutputAssignment3>();
-
 	Debugger->OutputDebugTestLogs();
-	  //---- Testing ----
-	// Creating a dummy item to be placed within the inventory:
-	//UItem* MyWizardStaff = NewObject<UItem>();
-	//UItem* MyWizardStaff2 = NewObject<UItem>();
-	//bool bIsEqual = MyWizardStaff->CompareItem(MyWizardStaff, MyWizardStaff2);
-	//UE_LOG(LogTemp, Warning, TEXT("%i"), bIsEqual);
-	//MyWizardStaff->Initialize("Wizard Staff", 3, 1);
-	//bIsEqual = MyWizardStaff->CompareItem(MyWizardStaff, MyWizardStaff2);
-	//UE_LOG(LogTemp, Warning, TEXT("%i"), bIsEqual);
-
-
-	//// Initializing array and adding in the dummy item:
-	//InitializeArray(MyMaxSize);
-
-	//MyItems[9] = MyWizardStaff;
-
-	//UE_LOG(LogTemp, Warning, TEXT("Added Item? %i"), AddItemAtIndex(40, MyWizardStaff2));
-	//UE_LOG(LogTemp, Warning, TEXT("Added Item? %i"), AddItemAtIndex(8, MyWizardStaff2));
-	//UE_LOG(LogTemp, Warning, TEXT("Added Item? %i"), AddItemAtIndex(-1, MyWizardStaff2));
+	//--------------//
 }
 
 // Called every frame
@@ -170,7 +150,7 @@ UItem* UItemInventoryComponent::ReplaceItem(int anIndex, UItem* aNewItem)
 	// Check to see if the index given is valid:
 	if (anIndex < 0 || anIndex > MyItems.Num() - 1)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Invalid index of %i given to GetItemAtIndex member function."), anIndex);
+		UE_LOG(LogTemp, Error, TEXT("Invalid index of %i given to ReplaceItem member function."), anIndex);
 		return NULL;
 	}
 
@@ -181,4 +161,180 @@ UItem* UItemInventoryComponent::ReplaceItem(int anIndex, UItem* aNewItem)
 	MyItems[anIndex] = aNewItem;
 
 	return CurrentItemReference;
+}
+
+UItem* UItemInventoryComponent::RemoveItem(int anIndex)
+{
+	// Check to see if the index given is valid:
+	if (anIndex < 0 || anIndex > MyItems.Num() - 1)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Invalid index of %i given to RemoveItem member function."), anIndex);
+		return NULL;
+	}
+
+	// Storing the previous item reference:
+	UItem* CurrentItemReference = MyItems[anIndex];
+
+	// Sets the current entry at the given entry to NULL (essentially removing it but keeping the empty slot):
+	MyItems[anIndex] = NULL;
+
+	return CurrentItemReference;
+
+}
+
+int UItemInventoryComponent::ContainsItem(UItem* anItem)
+{
+	for (int index = 0; index < MyItems.Num(); index++)
+	{
+		if (MyItems[index])
+		{
+			if (MyItems[index]->CompareItem(MyItems[index], anItem))
+			{
+				return index;
+			}
+		}
+	}
+	return -1;
+}
+
+UItem* UItemInventoryComponent::DropItem(UItem* anItem)
+{
+	return RemoveItem(ContainsItem(anItem));
+}
+
+// Sorts TArray Items by their Attack Value (Highest to Lowest):
+void UItemInventoryComponent::SortByAttack()
+{
+	for (int i = 0; i < MyItems.Num(); i++)
+	{
+		for (int j = i + 1; j < MyItems.Num(); j++)
+		{
+			// Checking for NULL entry in the item slot we're comparing against:
+			if (!MyItems[j])
+			{
+				continue;
+			}
+
+			// Checking for NULL entry in the current item slot we're sorting for:
+			if (!MyItems[i])
+			{
+				// Store the empty item we are using for comparison:
+				UItem* TemporaryItemRef = MyItems[i];
+
+				// Replaces our current item slot with the item we've compared to (not NULL):
+				MyItems[i] = MyItems[j];
+
+				// Replaces the item held in this slot with our current item (NULL):
+				MyItems[j] = TemporaryItemRef;
+
+				continue;
+			}
+
+
+			if (MyItems[i]->GetAttackValue() < MyItems[j]->GetAttackValue())
+			{
+				// Store current item we are using for comparison:
+				UItem* TemporaryItemRef = MyItems[i];
+
+				// Replaces our current item slot with the item we've compared to (has more Attack):
+				MyItems[i] = MyItems[j];
+
+				// Replaces the item held in this slot with our current item (which has less Attack):
+				MyItems[j] = TemporaryItemRef;
+			}
+		}
+	}
+}
+
+// Sorts TArray Items by their Defence Value (Highest to Lowest):
+void UItemInventoryComponent::SortByDefence()
+{
+	for (int i = 0; i < MyItems.Num(); i++)
+	{
+		for (int j = i + 1; j < MyItems.Num(); j++)
+		{
+			// Checking for NULL entry in the item slot we're comparing against:
+			if (!MyItems[j])
+			{
+				continue;
+			}
+
+			// Checking for NULL entry in the current item slot we're sorting for:
+			if (!MyItems[i])
+			{
+				// Store the empty item we are using for comparison:
+				UItem* TemporaryItemRef = MyItems[i];
+
+				// Replaces our current item slot with the item we've compared to (not NULL):
+				MyItems[i] = MyItems[j];
+
+				// Replaces the item held in this slot with our current item (NULL):
+				MyItems[j] = TemporaryItemRef;
+
+				continue;
+			}
+
+
+			if (MyItems[i]->GetDefenceValue() < MyItems[j]->GetDefenceValue())
+			{
+				// Store current item we are using for comparison:
+				UItem* TemporaryItemRef = MyItems[i];
+
+				// Replaces our current item slot with the item we've compared to (has more Defence):
+				MyItems[i] = MyItems[j];
+
+				// Replaces the item held in this slot with our current item (which has less Defence):
+				MyItems[j] = TemporaryItemRef;
+			}
+		}
+	}
+}
+
+// Sorts the TArray by the Item's name (in alphabetical order):
+void UItemInventoryComponent::SortByName()
+{
+	for (int i = 0; i < MyItems.Num(); i++)
+	{
+		for (int j = i + 1; j < MyItems.Num(); j++)
+		{
+			// Checking for NULL entry in the item slot we're comparing against:
+			if (!MyItems[j])
+			{
+				continue;
+			}
+
+			// Checking for NULL entry in the current item slot we're sorting for:
+			if (!MyItems[i])
+			{
+				// Store the empty item we are using for comparison:
+				UItem* TemporaryItemRef = MyItems[i];
+
+				// Replaces our current item slot with the item we've compared to (not NULL):
+				MyItems[i] = MyItems[j];
+
+				// Replaces the item held in this slot with our current item (NULL):
+				MyItems[j] = TemporaryItemRef;
+
+				continue;
+			}
+
+			// Storing the result of comparing both Item names [string1.Compare(string2)]:
+			// Returns -1 string2 is alphabetically before string1.
+			// Returns 0 if both strings are equal.
+			// Returns 1 if string2 is alphabetically after string1.
+			const int StringCompareResult = MyItems[i]->GetName().ToString().Compare(MyItems[j]->GetName().ToString());
+
+			if (StringCompareResult > 0)
+			{
+				// Store current item we are using for comparison:
+				UItem* TemporaryItemRef = MyItems[i];
+
+				// Replaces our current item slot with the item we've compared to (first letter of name is before):
+				MyItems[i] = MyItems[j];
+
+				// Replaces the item held in this slot with our current item (first letter of name comes after):
+				MyItems[j] = TemporaryItemRef;
+			}
+		}
+	}
 }

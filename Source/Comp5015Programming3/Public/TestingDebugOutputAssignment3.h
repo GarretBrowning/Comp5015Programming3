@@ -78,16 +78,20 @@ public:
 
 	// Replace the item at the given index with a NewItem, returning a reference to the old one.
 	//UItem* ReplaceItem(int anIndex, UItem* aNewItem);
+	void TestReplaceItem();
 
 	// removes and returns an Item* from the array
 	//UItem* RemoveItem(int index);
+	void TestRemoveItem();
 
 	// Items are considered the same if the Name, Attack and Defence all match.
 	// return -1 if it can't be found, otherwise return the index
 	//int ContainsItem(UItem* TheItem);
+	void TestContainsItem();
 
 	// If a matching Item is found, remove it. (Hint: Should be easy if you use existing functions!)
 	//UItem* DropItem(UItem* TheItem);
+	void TestDropItem();
 
 	// --- Challenge --- (Optional)
 	// Sorting methods that will change the order of the TArray Items.
@@ -97,7 +101,10 @@ public:
 		// 1. Create your own sorting function or
 		// 2. Custom Iterator for TArray Sort function
 	//void SortByAttack();
+	void TestSortByAttack();
 	//void SortByDefence();
+	void TestSortByDefence();
 	//void SortByName();
+	void TestSortByName();
 
 };

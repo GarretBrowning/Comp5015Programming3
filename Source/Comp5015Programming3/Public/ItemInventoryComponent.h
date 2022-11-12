@@ -51,22 +51,22 @@ public:
 	// Tries to add at a given index, returns false if it cant. Don't replace.
 	bool AddItemAtIndex(int anIndex, UItem* aNewItem);
 
-	// TODO: --- Need to Implement Everything Below Here: ---
 	// Retrieve non destructively:
 	UItem* GetItemAtIndex(int anIndex) const;
 
 	// Replace the item at the given index with a NewItem, returning a reference to the old one.
 	UItem* ReplaceItem(int anIndex, UItem* aNewItem);
 
+	// TODO: --- Need to Implement Everything Below Here: ---
 	// removes and returns an Item* from the array
-	UItem* RemoveItem(int index);
+	UItem* RemoveItem(int anIndex);
 
 	// Items are considered the same if the Name, Attack and Defence all match.
 	// return -1 if it can't be found, otherwise return the index
-	int ContainsItem(UItem* TheItem);
+	int ContainsItem(UItem* anItem);
 
 	// If a matching Item is found, remove it. (Hint: Should be easy if you use existing functions!)
-	UItem* DropItem(UItem* TheItem);
+	UItem* DropItem(UItem* anItem);
 
 	// --- Challenge --- (Optional)
 	// Sorting methods that will change the order of the TArray Items.
