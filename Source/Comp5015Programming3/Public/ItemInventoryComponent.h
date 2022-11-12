@@ -53,7 +53,7 @@ public:
 	UItem* GetItemAtIndex(int anIndex) const;
 
 	// Replace the item at the given index with a NewItem, returning a reference to the old one.
-	UItem* ReplaceItem(int index, UItem* NewItem);
+	UItem* ReplaceItem(int anIndex, UItem* aNewItem);
 
 	// removes and returns an Item* from the array
 	UItem* RemoveItem(int index);
