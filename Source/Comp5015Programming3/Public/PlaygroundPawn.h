@@ -1,4 +1,4 @@
-// This is the player pawn used for the playground level for use within Assignment 2 (Programming).
+// This is the player pawn used for the playground level for use within Assignment 2 & 3 (Programming).
 
 #pragma once
 
@@ -26,7 +26,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 

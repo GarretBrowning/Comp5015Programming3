@@ -20,11 +20,10 @@ class COMP5015PROGRAMMING3_API UTestingDebugOutputAssignment3 : public UObject
 
 	// Test Inventory Sizes:
 	int MySmallSize{ 5 };
-	int MyLargeSize{ 20 };
 
 public:
 
-	// Calls all testing functions for Item.h/cpp ItemInventoryComponent.h/cpp methods:
+	// Calls all testing functions for Item.h/cpp and ItemInventoryComponent.h/cpp methods:
 	void OutputDebugTestLogs();
 
 	// --- ITEM TESTING --- //
@@ -39,72 +38,80 @@ public:
 	// - Checking to see if the item displays the desired default data.
 	void TestItemInitialize();
 
+	// Creating a test item, setting its default values, and checking to see if we can retrieve its Attack Value:
 	void TestGetAttackValue();
-	void TestGetDefenceValue();
-	void TestGetName();
-	void TestGetIconImage(); // Not entirely sure what this is going to be used for yet.
 
-	/* Returns true if they have the same Name, Attack & Defence values; otherwise, returns false.
-	 * Should also return false if any parameter passed in is NULL. */
+	// Creating a test item, setting its default values, and checking to see if we can retrieve its Defence Value:
+	void TestGetDefenceValue();
+
+	// Creating a test item, setting its default values, and checking to see if we can retrieve its Name:
+	void TestGetName();
+
+	// Because there is no member variable within our Item class that holds a PaperSprite object, we will leave this for now...
+	void TestGetIconImage();
+
+	// Creating 3 test items (Unique Item, Unique Item, Duplicate of 2nd Item).
+	// Comparing Unique Item vs. Unique Item (Expecting Equal = False).
+	// Comparing Unique Item vs. Duplicate of 2nd Item (Expecting Equal = True).
 	void TestCompareItem();
+	// ------------------------------------------------------------------------------------------------------- //
 
 	// --- ITEM INVENTORY COMPONENT TESTING --- //
-	
 
-	// Initializes the array of a given maximum size and sets each entry to NULL:
+	// Creating an empty inventory and proving that it has empty contents:
 	void TestInitializeArray();
 
-	// --- Array Operations ---
-	// Returns the number of items currently in the array (does not count NULL entries):
-	//int CountItems() const;
+	// Creates an empty inventory along with a new item. Adds the item to the inventory.
+	// Counts the contents of the inventory after placing the item within it. Should return with a value of 1.
 	void TestCountItems();
 
-
-	// Does anything exist at a given index:
+	// Creates an empty inventory along with a new item. Adds the item to the inventory at a specific index [0].
+	// Checks to see if the item is at the specified index [0]. Should return True.
 	void TestContainsItemAtIndex();
 
-	// Adds an item into the inventory array at the last open space, returns true if
-	// it can be added, return false if it can't (no space because of MaxSize).
+	// Creates an empty inventory along with a new item.
+	// Checks afterwards to see if the item has been succesfully added in the last available open slot.
+	// Should return successful.
 	void TestAddItem();
 
-	// Tries to add at a given index, returns false if it cant. Don't replace.
-	//bool AddItemAtIndex(int anIndex, UItem* aNewItem);
+	// Creates an empty inventory along with a new item. Adds the item to the inventory at a specific index [2].
+	// Checks to see if the item is at the specified index [2]. Should return True.
 	void TestAddItemAtIndex();
 
-	// TODO: --- Need to Implement Everything Below Here: ---
-	// Retrieve non destructively:
-	//UItem* GetItemAtIndex(int anIndex) const;
+	// Creates an empty inventory along with a new item. Adds the item to the inventory at a specific index [1].
+	// Checks to see if the item at the specified index [1] is a valid item that can be returned.
+	// Should return the desired item.
 	void TestGetItemAtIndex();
 
-	// Replace the item at the given index with a NewItem, returning a reference to the old one.
-	//UItem* ReplaceItem(int anIndex, UItem* aNewItem);
+	// Creates an empty inventory along with 2 unique items. Adds one item to the inventory at index[1].
+	// Checks to see if the 2nd unique item replaces the original item placed at index[1].
+	// Should return the previous item as well as the new item replacing it at index[1].
 	void TestReplaceItem();
 
-	// removes and returns an Item* from the array
-	//UItem* RemoveItem(int index);
+	// Creates an empty inventory along with a new item. Adds the item to the inventory at a specific index [3].
+	// Checks to see if the item at the specified index [3] is a valid item that can be removed.
+	// Should return the desired item which has been removed.
 	void TestRemoveItem();
 
-	// Items are considered the same if the Name, Attack and Defence all match.
-	// return -1 if it can't be found, otherwise return the index
-	//int ContainsItem(UItem* TheItem);
+	// Creates an empty inventory along with a new item. Adds the item to the inventory.
+	// Checks to see if the item is contained within the inventory.
+	// Should return that the item was found.
 	void TestContainsItem();
 
-	// If a matching Item is found, remove it. (Hint: Should be easy if you use existing functions!)
-	//UItem* DropItem(UItem* TheItem);
+	// Creates an empty inventory along with a new item. Adds the item to the inventory.
+	// Checks to see if the item is contained within the inventory. If so, removes it.
+	// Should return that the item was found and removed.
 	void TestDropItem();
 
-	// --- Challenge --- (Optional)
-	// Sorting methods that will change the order of the TArray Items.
-	// After the function is run, the TArray will be in Alphabetical order (if sorted by name)
-	// OR descending(High to Low) for the int values.
-		// Either:
-		// 1. Create your own sorting function or
-		// 2. Custom Iterator for TArray Sort function
-	//void SortByAttack();
+	// Creates an empty inventory along with a 4 unique items. Adds the items to the inventory.
+	// Sorts the inventory by Attack. Outputs the previous inventory contents and the newly sorted contents (by Attack):
 	void TestSortByAttack();
-	//void SortByDefence();
-	void TestSortByDefence();
-	//void SortByName();
-	void TestSortByName();
 
+	// Creates an empty inventory along with a 4 unique items. Adds the items to the inventory.
+	// Sorts the inventory by Defence. Outputs the previous inventory contents and the newly sorted contents (by Defence):
+	void TestSortByDefence();
+
+	// Creates an empty inventory along with a 4 unique items. Adds the items to the inventory.
+	// Sorts the inventory by Name. Outputs the previous inventory contents and the newly sorted contents (by Name):
+	void TestSortByName();
 };

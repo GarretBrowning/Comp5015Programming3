@@ -1,20 +1,11 @@
-#include "TestingDebugOutputAssignment3.h"
-#include "TestingDebugOutputAssignment3.h"
-#include "TestingDebugOutputAssignment3.h"
-#include "TestingDebugOutputAssignment3.h"
-#include "TestingDebugOutputAssignment3.h"
-#include "TestingDebugOutputAssignment3.h"
 // Fill out your copyright notice in the Description page of Project Settings.
-
 
 #include "TestingDebugOutputAssignment3.h"
 #include "Item.h"
 #include "ItemInventoryComponent.h"
 
-
 UTestingDebugOutputAssignment3::UTestingDebugOutputAssignment3()
 {};
-
 
 void UTestingDebugOutputAssignment3::OutputDebugTestLogs()
 {
@@ -96,10 +87,8 @@ void UTestingDebugOutputAssignment3::TestGetIconImage()
 {
 }
 
-
 void UTestingDebugOutputAssignment3::TestCompareItem()
 {
-
 	UItem* MyTestShield = NewObject<UItem>();
 	MyTestShield->Initialize("Shield", 1, 4);
 
@@ -188,7 +177,7 @@ void UTestingDebugOutputAssignment3::TestAddItemAtIndex()
 
 	UItemInventoryComponent* MyTestInventory = NewObject<UItemInventoryComponent>();
 	MyTestInventory->InitializeArray(MySmallSize);
-	MyTestInventory->AddItemAtIndex(0, MyTestShortSword);
+	MyTestInventory->AddItemAtIndex(2, MyTestShortSword);
 
 	UE_LOG(LogTemp, Warning, TEXT("-- Testing ItemInventoryComponent TestAddItemAtIndex(int anIndex, UItem* anItem) --"));
 	UE_LOG(LogTemp, Display, TEXT("Initializing Short Sword: --- %s"), *MyTestShortSword->ToString());
@@ -303,7 +292,6 @@ void UTestingDebugOutputAssignment3::TestSortByAttack()
 	UItem* MyTestGreatAxe = NewObject<UItem>();
 	MyTestGreatAxe->Initialize("Great Axe", 8, 2);
 
-
 	UItem* MyTestShield = NewObject<UItem>();
 	MyTestShield->Initialize("Shield", 1, 4);
 
@@ -353,7 +341,6 @@ void UTestingDebugOutputAssignment3::TestSortByDefence()
 
 		UItem* MyTestGreatAxe = NewObject<UItem>();
 		MyTestGreatAxe->Initialize("Great Axe", 8, 2);
-
 
 		UItem* MyTestShield = NewObject<UItem>();
 		MyTestShield->Initialize("Shield", 1, 4);
@@ -405,7 +392,6 @@ void UTestingDebugOutputAssignment3::TestSortByName()
 
 		UItem* MyTestGreatAxe = NewObject<UItem>();
 		MyTestGreatAxe->Initialize("Great Axe", 8, 2);
-
 
 		UItem* MyTestShield = NewObject<UItem>();
 		MyTestShield->Initialize("Shield", 1, 4);

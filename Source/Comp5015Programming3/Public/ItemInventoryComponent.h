@@ -57,8 +57,7 @@ public:
 	// Replace the item at the given index with a NewItem, returning a reference to the old one.
 	UItem* ReplaceItem(int anIndex, UItem* aNewItem);
 
-	// TODO: --- Need to Implement Everything Below Here: ---
-	// removes and returns an Item* from the array
+	// Removes and returns an Item* from the array
 	UItem* RemoveItem(int anIndex);
 
 	// Items are considered the same if the Name, Attack and Defence all match.
@@ -69,14 +68,13 @@ public:
 	UItem* DropItem(UItem* anItem);
 
 	// --- Challenge --- (Optional)
-	// Sorting methods that will change the order of the TArray Items.
-	// After the function is run, the TArray will be in Alphabetical order (if sorted by name)
-	// OR descending(High to Low) for the int values.
-		// Either:
-		// 1. Create your own sorting function or
-		// 2. Custom Iterator for TArray Sort function
+	// Sorts the inventory by Attack (highest to lowest).
 	void SortByAttack();
+
+	// Sorts the inventory by Defence (highest to lowest).
 	void SortByDefence();
+
+	// Sorts the inventory by Name (alphabetical order).
 	void SortByName();
 
 };

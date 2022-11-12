@@ -55,6 +55,7 @@ void UItemInventoryComponent::InitializeArray(int aMaxSize)
 	}
 }
 
+// Returns the value of MyMaxSize:
 int UItemInventoryComponent::GetMaxSize() const
 {
 	return MyMaxSize;

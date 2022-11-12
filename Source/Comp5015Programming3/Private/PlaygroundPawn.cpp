@@ -22,7 +22,6 @@ APlaygroundPawn::APlaygroundPawn()
 void APlaygroundPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -38,6 +37,5 @@ void APlaygroundPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 	// Binding input to specific abilities:
 	//PlayerInputComponent->BindAction("DamageAbility", IE_Pressed, this, &GenericAbility::ActivateAbilityInComponent)
-
 }
 
