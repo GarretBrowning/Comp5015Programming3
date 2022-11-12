@@ -47,10 +47,10 @@ bool UItem::CompareItem(UItem* anItem, UItem* anItemToCompare)
 		anItem->GetDefenceValue() == anItemToCompare->GetDefenceValue()
 		)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Items are the same."));
+		UE_LOG(LogTemp, Display, TEXT("Items are the same."));
 		return true;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Items are the not equal."));
+	UE_LOG(LogTemp, Display, TEXT("Items are the not equal."));
 	return false;
 }
 

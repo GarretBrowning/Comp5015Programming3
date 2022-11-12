@@ -35,6 +35,9 @@ public:
 	void InitializeArray(int aMaxSize);
 
 	// --- Array Operations ---
+	// Returns the maximum size of the item inventory (includes NULL entries):
+	int GetMaxSize() const;
+
 	// Returns the number of items currently in the array (does not count NULL entries):
 	int CountItems() const;
 
@@ -53,7 +56,7 @@ public:
 	UItem* GetItemAtIndex(int anIndex) const;
 
 	// Replace the item at the given index with a NewItem, returning a reference to the old one.
-	UItem* ReplaceItem(int index, UItem* NewItem);
+	UItem* ReplaceItem(int anIndex, UItem* aNewItem);
 
 	// removes and returns an Item* from the array
 	UItem* RemoveItem(int index);
