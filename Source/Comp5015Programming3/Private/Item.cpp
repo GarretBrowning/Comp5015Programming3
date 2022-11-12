@@ -18,26 +18,31 @@ void UItem::Initialize(FName aName, int anAttackValue, int aDefenceValue)
 	MyDefenceValue = aDefenceValue;
 }
 
+// Returns the Item's Attack Value:
 int UItem::GetAttackValue()
 {
 	return MyAttackValue;
 }
 
+// Returns the Item's Defence Value:
 int UItem::GetDefenceValue()
 {
 	return MyDefenceValue;
 }
 
+// Returns the Item's Name:
 FName UItem::GetName()
 {
 	return MyName;
 }
 
+// Returns a nullptr (no class member to hold a UPaperSprite object).
 UPaperSprite* UItem::GetIconImage()
 {
 	return nullptr;
 }
 
+// Returns whether or not an Item has equal Name, Attack, and Defence values compared to a given item.
 bool UItem::CompareItem(UItem* anItem, UItem* anItemToCompare)
 {
 	if (
