@@ -61,7 +61,7 @@ public:
 
 
 	// Does anything exist at a given index:
-	void ContainsItemAtIndex();
+	void TestContainsItemAtIndex();
 
 	// Adds an item into the inventory array at the last open space, returns true if
 	// it can be added, return false if it can't (no space because of MaxSize).

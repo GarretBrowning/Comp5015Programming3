@@ -24,7 +24,8 @@ void UTestingDebugOutputAssignment3::OutputDebugTestLogs()
 	TestInitializeArray();
 	TestCountItems();
 	TestAddItem();
-	ContainsItemAtIndex();
+	TestContainsItemAtIndex();
+	TestGetItemAtIndex();
 	return;
 }
 
@@ -131,7 +132,7 @@ void UTestingDebugOutputAssignment3::TestCountItems()
 	UE_LOG(LogTemp, Display, TEXT("Adding Shield to Inventory. Items in Inventory: %i"), MyTestInventory->CountItems());
 }
 
-void UTestingDebugOutputAssignment3::ContainsItemAtIndex()
+void UTestingDebugOutputAssignment3::TestContainsItemAtIndex()
 {
 	UItem* MyTestShield = NewObject<UItem>();
 	MyTestShield->Initialize("Shield", 1, 4);
@@ -188,5 +189,28 @@ void UTestingDebugOutputAssignment3::TestAddItemAtIndex()
 
 void UTestingDebugOutputAssignment3::TestGetItemAtIndex()
 {
-	// This one next! You got this! :party:
+
+	UItem* MyTestWizardStaff = NewObject<UItem>();
+	MyTestWizardStaff->Initialize("Wizard Staff", 6, 1);
+
+	UItemInventoryComponent* MyTestInventory = NewObject<UItemInventoryComponent>();
+	MyTestInventory->InitializeArray(MySmallSize);
+	MyTestInventory->AddItemAtIndex(1, MyTestWizardStaff);
+
+	UE_LOG(LogTemp, Warning, TEXT("-- Testing ItemInventoryComponent GetItemAtIndex(int anIndex)  --"));
+	UE_LOG(LogTemp, Display, TEXT("Initializing Test Wizard Staff: --- %s"), *MyTestWizardStaff->ToString());
+	UE_LOG(LogTemp, Display, TEXT("Inventory has been created with a size of: %i"), MyTestInventory->GetMaxSize());
+	UE_LOG(LogTemp, Display, TEXT("Adding Wizard Staff to the Second Inventory Slot [1] using AddItemAtIndex method."));
+	UE_LOG(LogTemp, Display, TEXT("Retrieving item using the GetItemAtIndex method."));
+
+	if (MyTestInventory->GetItemAtIndex(1))
+	{
+		UE_LOG(LogTemp, Display, TEXT("Item contained at Inventory Slot [1]: %s"), *MyTestInventory->GetItemAtIndex(1)->ToString());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Item could not be retrieved from specified index."));
+	}
+
+
 }
