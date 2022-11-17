@@ -18,7 +18,7 @@ class COMP5015PROGRAMMING3_API UTestingDebugOutputAssignment3 : public UObject
 	// Constructor:
 	UTestingDebugOutputAssignment3();
 
-	// Test Inventory Sizes:
+	// Test Inventory Size:
 	int MySmallSize{ 5 };
 
 public:

@@ -13,7 +13,6 @@ UItemInventoryComponent::UItemInventoryComponent()
 	// ...
 }
 
-
 // Called when the game starts
 void UItemInventoryComponent::BeginPlay()
 {
@@ -106,8 +105,9 @@ bool UItemInventoryComponent::AddItem(UItem* aNewItem)
 	return false;
 }
 
-// Adds an item to the given index within the inventory array. The item is only added if the specified index is empty/NULL.
-// Returns whether or not the item was added successfully.
+// Checks first to see whether or not the given index is valid.
+// If the index is valid, adds the item to the that index within the inventory array. The item is only added if the given index is empty/NULL.
+// Returns whether or not the item was added successfully:
 bool UItemInventoryComponent::AddItemAtIndex(int anIndex, UItem* aNewItem)
 {
 	// Check to see if the index given is valid:
@@ -126,7 +126,8 @@ bool UItemInventoryComponent::AddItemAtIndex(int anIndex, UItem* aNewItem)
 	return false;
 }
 
-// Retrieves an item at the given index.
+// Checks first to see whether or not the given index is valid.
+// If a valid index is given, returns the item at that index.
 UItem* UItemInventoryComponent::GetItemAtIndex(int anIndex) const
 {
 	// Check to see if the index given is valid:
@@ -145,7 +146,9 @@ UItem* UItemInventoryComponent::GetItemAtIndex(int anIndex) const
 	return NULL;
 }
 
-// Replaces the item at a given index with a given item. Returns a reference to the replaced item.
+// Checks first to see whether or not the given index is valid.
+// If a valid index is given, replaces the item at that index with a given item.
+// Returns a referenc to the item that has been replaced:
 UItem* UItemInventoryComponent::ReplaceItem(int anIndex, UItem* aNewItem)
 {
 	// Check to see if the index given is valid:
@@ -164,6 +167,9 @@ UItem* UItemInventoryComponent::ReplaceItem(int anIndex, UItem* aNewItem)
 	return CurrentItemReference;
 }
 
+// Checks first to see whether or not the given index is valid.
+// If a valid index is given, removes the item from the collection.
+// Returns a reference to the removed item:
 UItem* UItemInventoryComponent::RemoveItem(int anIndex)
 {
 	// Check to see if the index given is valid:
@@ -183,6 +189,8 @@ UItem* UItemInventoryComponent::RemoveItem(int anIndex)
 
 }
 
+// Iterates through the Inventory to find any valid item. If that valid item is the same as the given item to compare to, return the index.
+// Otherwise, if the item is not found, returns -1:
 int UItemInventoryComponent::ContainsItem(UItem* anItem)
 {
 	for (int index = 0; index < MyItems.Num(); index++)
@@ -198,6 +206,8 @@ int UItemInventoryComponent::ContainsItem(UItem* anItem)
 	return -1;
 }
 
+// Removes the specified item at the given index (if the item exists).
+// Returns a reference to the deleted item:
 UItem* UItemInventoryComponent::DropItem(UItem* anItem)
 {
 	return RemoveItem(ContainsItem(anItem));

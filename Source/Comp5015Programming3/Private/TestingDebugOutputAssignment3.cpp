@@ -7,6 +7,7 @@
 UTestingDebugOutputAssignment3::UTestingDebugOutputAssignment3()
 {};
 
+// Calls each of the testing methods for both Item and ItemInventoryComponent:
 void UTestingDebugOutputAssignment3::OutputDebugTestLogs()
 {
 	// -- ITEMS --
