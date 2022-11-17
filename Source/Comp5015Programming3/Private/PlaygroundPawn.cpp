@@ -16,6 +16,9 @@ APlaygroundPawn::APlaygroundPawn()
 
 	// Adding in an item inventory component.
 	ItemInventory = CreateDefaultSubobject<UItemInventoryComponent>(TEXT("Inventory"));
+
+	// Adding in a story beat talker component (for dialogue system | Assignment 4).
+	Dialogue = CreateDefaultSubobject<UStoryBeatTalker>(TEXT("Dialogue"));
 }
 
 // Called when the game starts or when spawned

@@ -6,6 +6,7 @@
 #include "GenericAbilityComponent.h"
 #include "HealthComponent.h"
 #include "ItemInventoryComponent.h"
+#include "StoryBeatTalker.h"
 #include "GameFramework/Pawn.h"
 #include "PlaygroundPawn.generated.h"
 
@@ -37,4 +38,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	UItemInventoryComponent* ItemInventory;
+
+	UPROPERTY(BlueprintReadOnly)
+	UStoryBeatTalker* Dialogue;
 };
