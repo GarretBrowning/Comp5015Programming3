@@ -1,4 +1,4 @@
-// This is the player pawn used for the playground level for use within Assignment 2 & 3 (Programming).
+// This is the player pawn used for the playground level for use within Assignments 2-4 (Programming).
 
 #pragma once
 
